@@ -7,9 +7,10 @@ public class Nodo {
     private int prioridad;
 
     //Siempre en null proximo
-    public Nodo(Cliente cliente, Nodo proximo) {
+    public Nodo(Cliente cliente, int prioridad, Nodo proximo) {
 
         this.cliente = cliente;
+        this.prioridad = prioridad;
         this.proximo = proximo;
     }
 
@@ -27,5 +28,13 @@ public class Nodo {
 
     public void setProximo(Nodo proximo) {
         this.proximo = proximo;
+    }
+
+    public int getPrioridad() {
+        return this.prioridad;
+    }
+
+    public void setPrioridad(int prioridad) {
+        this.prioridad = prioridad;
     }
 }

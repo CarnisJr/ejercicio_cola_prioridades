@@ -7,6 +7,7 @@ public class Cola {
     private Nodo inicio;
     private Nodo fin;
     private int tamanio;
+    private String atendidosString = "";
 
     public Cola() {
 
@@ -20,29 +21,60 @@ public class Cola {
         return this.inicio == null && this.fin == null;
     }
 
-    public void enqeue(Cliente cliente){
+    public void enqeue(Cliente cliente, int prioridad, JTextArea textArea){
 
-        Nodo nuevoCliente = new Nodo(cliente, null);
+        Nodo nuevoCliente = new Nodo(cliente, prioridad, null);
+        Nodo aux = this.inicio;
 
-        if(isEmpty()){
-
-            this.inicio = this.fin = nuevoCliente;
-        }else{
+        if(!isEmpty()){
 
             this.fin.setProximo(nuevoCliente);
             this.fin = nuevoCliente;
-        }
-    }
-    public void deqeue(){
-
-        if(isEmpty()){
-
-            JOptionPane.showMessageDialog(null, "Vacio");
         }else{
 
-            this.inicio = this.inicio.getProximo();
+            this.inicio = this.fin = nuevoCliente;
         }
+        tamanio++;
+        refresh(textArea);
+    }
+    public void deqeue(JTextArea textArea, JTextArea textArea2){
+
+        if(!isEmpty()){
+
+            atendidosString += this.inicio.getCliente().getNombre() + " Ha sido atendida, prioridad:  " + this.inicio.getPrioridad() + "\n";
+            textArea2.setText(atendidosString);
+            if(this.inicio == this.fin){
+
+                this.inicio = this.fin = null;
+            }else{
+
+                this.inicio = this.inicio.getProximo();
+            }
+            tamanio--;
+        }else{
+
+            JOptionPane.showMessageDialog(null, "Vacio");
+        }
+        refresh(textArea);
     }
 
+    public String showClientes(){
 
+        StringBuilder clientesEnCola = new StringBuilder();
+        Nodo aux = inicio;
+        if(!isEmpty()){
+
+            while(aux != null){
+
+                clientesEnCola.append("Nombre: ").append(aux.getCliente().getNombre()).append(" Prioridad: ").append(aux.getPrioridad()).append("\n");
+                aux = aux.getProximo();
+            }
+        }
+
+        return clientesEnCola.toString();
+    }
+
+    public void refresh(JTextArea textArea){
+        textArea.setText("Clientes en cola: " + this.tamanio + "\n" + showClientes());
+    }
 }
