@@ -24,15 +24,21 @@ public class Cola {
     public void enqeue(Cliente cliente, int prioridad, JTextArea textArea){
 
         Nodo nuevoCliente = new Nodo(cliente, prioridad, null);
-        Nodo aux = this.inicio;
 
-        if(!isEmpty()){
+        if(isEmpty() || nuevoCliente.getPrioridad() < this.inicio.getPrioridad()){
 
-            this.fin.setProximo(nuevoCliente);
-            this.fin = nuevoCliente;
+            nuevoCliente.setProximo(this.inicio);
+            this.inicio = nuevoCliente;
         }else{
 
-            this.inicio = this.fin = nuevoCliente;
+            Nodo aux = this.inicio;
+            while(aux.getProximo() != null && aux.getProximo().getPrioridad() <= nuevoCliente.getPrioridad()) {
+
+                aux = aux.getProximo();
+            }
+
+            nuevoCliente.setProximo(aux.getProximo());
+            aux.setProximo(nuevoCliente);
         }
         tamanio++;
         refresh(textArea);
