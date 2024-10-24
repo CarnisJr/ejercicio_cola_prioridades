@@ -1,7 +1,6 @@
 package GUI;
 
 import Logica.Cliente;
-import Logica.Cola;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,7 +14,7 @@ public class ColaPrioridad {
     private JTextArea textArea2;
     private JButton nuevoClienteButton;
     private JButton atenderClienteButton;
-    private Cola cola = new Cola();
+    private Logica.ColaPrioridad cola = new Logica.ColaPrioridad();
 
     public ColaPrioridad() {
         nuevoClienteButton.addActionListener(new ActionListener() {
