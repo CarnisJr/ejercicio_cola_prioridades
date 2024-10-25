@@ -3,7 +3,7 @@ package Logica;
 import javax.swing.*;
 
 /**
- * Pila es una clase que define una estructura de datos que sigue el principio FIFO. Para su implementacion se va
+ * ColaPrioridad es una clase que define una estructura de datos que sigue el principio FIFO. Para su implementacion se va
  * a hacer uso del concepto de listas enlazadas.
  * @author Christopher Miranda
  */
